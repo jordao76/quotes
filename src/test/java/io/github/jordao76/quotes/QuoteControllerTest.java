@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.setup.*;
 import org.springframework.web.context.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = QuoteApplication.class)
 @WebAppConfiguration
 public class QuoteControllerTest {
 
@@ -29,9 +29,9 @@ public class QuoteControllerTest {
   }
 
   @Test
-  public void getQuote() throws Exception {
+  public void getQuotes() throws Exception {
     client
-      .perform(get("/quote"))
+      .perform(get("/quotes"))
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json;charset=UTF-8"));
   }

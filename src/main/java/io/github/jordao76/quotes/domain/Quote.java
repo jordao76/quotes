@@ -1,9 +1,22 @@
 package io.github.jordao76.quotes.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Quote {
 
-  private final String text;
-  private final String author;
+  @Id
+  @GeneratedValue
+  private Long id;
+
+  @Column(nullable = false)
+  private String text;
+
+  @Column(nullable = false)
+  private String author;
+
+  @SuppressWarnings("unused")
+  private Quote() {}
 
   public Quote(String text, String author) {
     this.text = text;
