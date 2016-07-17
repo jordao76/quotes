@@ -7,7 +7,6 @@ import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.*;
-import org.springframework.http.*;
 import org.springframework.test.context.junit4.*;
 import org.springframework.test.context.web.*;
 import org.springframework.test.web.servlet.*;
@@ -22,20 +21,19 @@ public class QuoteControllerTest {
   @Autowired
   private WebApplicationContext wac;
 
-  private MockMvc mockMvc;
+  private MockMvc client;
 
   @Before
   public void setup() {
-      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+    client = MockMvcBuilders.webAppContextSetup(wac).build();
   }
 
   @Test
   public void getQuote() throws Exception {
-      this.mockMvc
-        .perform(get("/quote")
-        .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType("application/json;charset=UTF-8"));
+    client
+      .perform(get("/quote"))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType("application/json;charset=UTF-8"));
   }
 
 }
