@@ -18,7 +18,7 @@ public class QuoteApplication {
   @Bean
   public CommandLineRunner createInitialQuotes(QuoteRepository repo) {
     return (args) -> {
-      if (repo.count() < 0) return;
+      if (repo.count() > 0) return;
       repo.save(Arrays.asList(
         new Quote(
           "Any sufficiently advanced technology is indistinguishable from magic.",
