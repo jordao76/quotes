@@ -1,5 +1,6 @@
 package io.github.jordao76.quotes;
 
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -33,7 +34,8 @@ public class QuoteControllerTest {
     client
       .perform(get("/quotes"))
       .andExpect(status().isOk())
-      .andExpect(content().contentType("application/json;charset=UTF-8"));
+      .andExpect(content().contentType("application/json;charset=UTF-8"))
+      .andExpect(content().string(containsString("Any sufficiently advanced technology is indistinguishable from magic.")));
   }
 
 }
