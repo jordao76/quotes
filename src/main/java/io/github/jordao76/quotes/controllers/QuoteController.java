@@ -10,8 +10,12 @@ import io.github.jordao76.quotes.domain.*;
 @RestController
 public class QuoteController {
 
-  @Autowired
   private QuoteRepository repo;
+
+  @Autowired
+  public QuoteController(QuoteRepository repo) {
+    this.repo = repo;
+  }
 
   @RequestMapping(value = "/quotes", method = GET)
   public Iterable<Quote> getQuotes() {
