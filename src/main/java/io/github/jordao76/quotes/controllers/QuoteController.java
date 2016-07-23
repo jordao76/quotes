@@ -8,16 +8,17 @@ import org.springframework.web.bind.annotation.*;
 import io.github.jordao76.quotes.domain.*;
 
 @RestController
+@RequestMapping(value = "/quotes")
 public class QuoteController {
 
-  private QuoteRepository repo;
+  private final QuoteRepository repo;
 
   @Autowired
   public QuoteController(QuoteRepository repo) {
     this.repo = repo;
   }
 
-  @RequestMapping(value = "/quotes", method = GET)
+  @RequestMapping(method = GET)
   public Iterable<Quote> getQuotes() {
     return repo.findAll();
   }

@@ -13,30 +13,45 @@ import io.github.jordao76.quotes.domain.*;
 
 public class QuoteMatchers {
 
-  public static ResultMatcher asQuotes(Matcher<Quote[]> matcher) {
-    return result -> {
-      String json = result.getResponse().getContentAsString();
-      assertThat(deserializeJson(json, Quote[].class), matcher);
-    };
+  public static ResultMatcher contentAsQuote(Matcher<Quote> matcher) {
+    return contentAs(Quote.class, matcher);
   }
 
-  public static Matcher<Quote[]> hasQuote(String text, String author) {
-    return new TypeSafeMatcher<Quote[]>() {
+  public static ResultMatcher contentAsQuotes(Matcher<Quote[]> matcher) {
+    return contentAs(Quote[].class, matcher);
+  }
+
+  public static Matcher<Quote> matching(String text, String author) {
+    return new TypeSafeMatcher<Quote>() {
       @Override
       public void describeTo(Description description) {
         description.appendText(
-          String.format("has Quote with text=[%s], author=[%s]", text, author));
+          String.format("Quote with text=[%s], author=[%s]", text, author));
       }
       @Override
-      protected boolean matchesSafely(Quote[] quotes) {
-        return Stream.of(quotes)
-          .anyMatch(quote -> quote.getText().equals(text) && quote.getAuthor().equals(author));
+      protected boolean matchesSafely(Quote quote) {
+        return quote.getText().equals(text) && quote.getAuthor().equals(author);
       }
     };
   }
 
-  public static <T> ResultMatcher fromJsonTo(Class<T> type, Matcher<? super T> matcher) {
-    return result -> assertThat(deserializeJson(result.getResponse().getContentAsString(), type), matcher);
+  public static Matcher<Quote[]> hasQuote(Matcher<Quote> matcher) {
+    return new TypeSafeMatcher<Quote[]>() {
+      @Override
+      public void describeTo(Description description) {
+        description.appendText("has ");
+        description.appendDescriptionOf(matcher);
+      }
+      @Override
+      protected boolean matchesSafely(Quote[] quotes) {
+        return Stream.of(quotes).anyMatch(quote -> matcher.matches(quote));
+      }
+    };
+  }
+
+  public static <T> ResultMatcher contentAs(Class<T> type, Matcher<? super T> matcher) {
+    return result ->
+      assertThat(deserializeJson(result.getResponse().getContentAsString(), type), matcher);
   }
 
   public static String serializeJson(Object obj) {
@@ -56,5 +71,6 @@ public class QuoteMatchers {
       throw new RuntimeException(e);
     }
   }
+
 
 }

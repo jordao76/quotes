@@ -1,6 +1,7 @@
 package io.github.jordao76.quotes;
 
 import static io.github.jordao76.quotes.support.QuoteMatchers.*;
+import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
@@ -34,8 +35,8 @@ public class QuoteControllerTest {
     client
       .perform(get("/quotes"))
       .andExpect(status().isOk())
-      .andExpect(content().contentType("application/json;charset=UTF-8"))
-      .andExpect(asQuotes(hasQuote("Any sufficiently advanced technology is indistinguishable from magic.", "Arthur C. Clarke")));
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(contentAsQuotes(hasQuote(matching("Any sufficiently advanced technology is indistinguishable from magic.", "Arthur C. Clarke"))));
   }
 
 }
