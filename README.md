@@ -1,5 +1,6 @@
 # Quotes
 
+[![Build Status](https://travis-ci.org/jordao76/quotes.svg)](https://travis-ci.org/jordao76/quotes)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/jordao76/quotes/blob/master/LICENSE)
 
 Simple spring-boot service for citations.
