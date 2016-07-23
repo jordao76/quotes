@@ -24,6 +24,7 @@ public class Quote {
     this.author = author;
   }
 
+  public Long getId() { return id; }
   public String getText() { return text; }
   public String getAuthor() { return author; }
 

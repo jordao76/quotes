@@ -30,7 +30,9 @@ public class QuoteMatchers {
       }
       @Override
       protected boolean matchesSafely(Quote quote) {
-        return quote.getText().equals(text) && quote.getAuthor().equals(author);
+        return
+          quote != null &&
+            text.equals(quote.getText()) && author.equals(quote.getAuthor());
       }
     };
   }

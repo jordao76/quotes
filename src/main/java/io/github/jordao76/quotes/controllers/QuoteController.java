@@ -2,7 +2,10 @@ package io.github.jordao76.quotes.controllers;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import javax.validation.*;
+
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import io.github.jordao76.quotes.domain.*;
@@ -21,6 +24,12 @@ public class QuoteController {
   @RequestMapping(method = GET)
   public Iterable<Quote> getQuotes() {
     return repo.findAll();
+  }
+
+  @RequestMapping(method = PUT)
+  public ResponseEntity<Quote> putQuote(@RequestBody @Valid Quote quote) {
+    Quote saved = repo.save(quote);
+    return ResponseEntity.ok().body(saved);
   }
 
 }

@@ -15,6 +15,8 @@ import org.springframework.test.context.web.*;
 import org.springframework.test.web.servlet.*;
 import org.springframework.web.context.*;
 
+import io.github.jordao76.quotes.domain.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = QuoteApplication.class)
 @WebAppConfiguration
@@ -37,6 +39,20 @@ public class QuoteControllerTest {
       .andExpect(status().isOk())
       .andExpect(content().contentType(APPLICATION_JSON_UTF8))
       .andExpect(contentAsQuotes(hasQuote(matching("Any sufficiently advanced technology is indistinguishable from magic.", "Arthur C. Clarke"))));
+  }
+
+  @Test
+  public void putQuote() throws Exception {
+    String quoteText = "Quick decisions are unsafe decisions.",
+      quoteAuthor = "Sophocles";
+    Quote quote = new Quote(quoteText, quoteAuthor);
+    client
+      .perform(put("/quotes")
+        .contentType(APPLICATION_JSON)
+        .content(serializeJson(quote)))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(contentAsQuote(matching(quoteText, quoteAuthor)));
   }
 
 }
