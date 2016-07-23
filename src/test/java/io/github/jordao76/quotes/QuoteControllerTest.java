@@ -32,13 +32,27 @@ public class QuoteControllerTest {
     client = webAppContextSetup(wac).build();
   }
 
+  // first quote added to the repository (@see QuoteApplication.populateRepo),
+  // should have ID = 1
+  String firstQuoteText = "Any sufficiently advanced technology is indistinguishable from magic.";
+  String firstQuoteAuthor = "Arthur C. Clarke";
+
   @Test
-  public void getQuotes() throws Exception {
+  public void getQuotes_checkFirstQuote() throws Exception {
     client
       .perform(get("/quotes"))
       .andExpect(status().isOk())
       .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-      .andExpect(contentAsQuotes(hasQuote(matching("Any sufficiently advanced technology is indistinguishable from magic.", "Arthur C. Clarke"))));
+      .andExpect(contentAsQuotes(hasQuote(matching(firstQuoteText, firstQuoteAuthor))));
+  }
+
+  @Test
+  public void getFirstQuote() throws Exception {
+    client
+      .perform(get("/quotes/1"))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(contentAsQuote(matching(firstQuoteText, firstQuoteAuthor)));
   }
 
   @Test

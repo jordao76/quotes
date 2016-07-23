@@ -26,6 +26,11 @@ public class QuoteController {
     return repo.findAll();
   }
 
+  @RequestMapping(value = "/{id}", method = GET)
+  public Quote getQuote(@PathVariable Long id) {
+    return repo.findOne(id);
+  }
+
   @RequestMapping(method = PUT)
   public ResponseEntity<Quote> putQuote(@RequestBody @Valid Quote quote) {
     Quote saved = repo.save(quote);
