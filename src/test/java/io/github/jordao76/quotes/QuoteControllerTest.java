@@ -83,4 +83,16 @@ public class QuoteControllerTest {
       .andExpect(contentAsQuote(matching(quoteText, quoteAuthor)));
   }
 
+  @Test
+  public void putQuote_InvalidText() throws Exception {
+    String quoteText = null,
+      quoteAuthor = "Sophocles";
+    Quote quote = new Quote(quoteText, quoteAuthor);
+    client
+      .perform(put("/quotes")
+        .contentType(APPLICATION_JSON)
+        .content(serializeJson(quote)))
+      .andExpect(status().isBadRequest());
+  }
+
 }
