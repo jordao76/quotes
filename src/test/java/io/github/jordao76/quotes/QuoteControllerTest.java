@@ -84,7 +84,7 @@ public class QuoteControllerTest {
   }
 
   @Test
-  public void putQuote_InvalidText() throws Exception {
+  public void putQuote_invalidText() throws Exception {
     String quoteText = null,
       quoteAuthor = "Sophocles";
     Quote quote = new Quote(quoteText, quoteAuthor);
@@ -92,6 +92,15 @@ public class QuoteControllerTest {
       .perform(put("/quotes")
         .contentType(APPLICATION_JSON)
         .content(serializeJson(quote)))
+      .andExpect(status().isBadRequest());
+  }
+
+  @Test
+  public void putQuote_wrongJson() throws Exception {
+    client
+      .perform(put("/quotes")
+        .contentType(APPLICATION_JSON)
+        .content("{\"citation\":\"to be or not to be\"}"))
       .andExpect(status().isBadRequest());
   }
 
