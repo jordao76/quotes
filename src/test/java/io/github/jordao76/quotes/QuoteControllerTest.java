@@ -56,6 +56,13 @@ public class QuoteControllerTest {
   }
 
   @Test
+  public void getQuote_notFound() throws Exception {
+    client
+      .perform(get("/quotes/42"))
+      .andExpect(status().isNotFound());
+  }
+
+  @Test
   public void putQuote() throws Exception {
     String quoteText = "Quick decisions are unsafe decisions.",
       quoteAuthor = "Sophocles";

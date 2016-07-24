@@ -1,5 +1,6 @@
 package io.github.jordao76.quotes.controllers;
 
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import javax.validation.*;
@@ -27,8 +28,10 @@ public class QuoteController {
   }
 
   @RequestMapping(value = "/{id}", method = GET)
-  public Quote getQuote(@PathVariable Long id) {
-    return repo.findOne(id);
+  public ResponseEntity<Quote> getQuote(@PathVariable Long id) {
+    Quote saved = repo.findOne(id);
+    if (saved == null) return new ResponseEntity<>(NOT_FOUND);
+    return ResponseEntity.ok().body(saved);
   }
 
   @RequestMapping(method = PUT)
