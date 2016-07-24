@@ -40,4 +40,10 @@ public class QuoteController {
     return ResponseEntity.ok().body(saved);
   }
 
+  @RequestMapping(value = "/{id}", method = DELETE)
+  public ResponseEntity<Void> deleteQuote(@PathVariable Long id) {
+    repo.delete(id);
+    return new ResponseEntity<>(NO_CONTENT);
+  }
+
 }

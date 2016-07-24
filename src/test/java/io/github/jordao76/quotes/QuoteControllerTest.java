@@ -113,4 +113,17 @@ public class QuoteControllerTest {
       .andExpect(status().isUnsupportedMediaType());
   }
 
+  @Test
+  public void deleteSecondQuote() throws Exception {
+    client
+      .perform(get("/quotes/2"))
+      .andExpect(status().isOk());
+    client
+      .perform(delete("/quotes/2"))
+      .andExpect(status().isNoContent());
+    client
+      .perform(get("/quotes/2"))
+      .andExpect(status().isNotFound());
+  }
+
 }
