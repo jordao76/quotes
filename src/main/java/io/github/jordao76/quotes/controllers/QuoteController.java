@@ -38,9 +38,9 @@ public class QuoteController {
   }
 
   @RequestMapping(method = PUT)
-  public ResponseEntity<Quote> putQuote(@RequestBody @Valid Quote quote) {
+  public ResponseEntity<Quote> putQuote(@RequestBody @Valid Quote quote, UriComponentsBuilder uriBuilder) {
     Quote saved = repo.save(quote);
-    return ResponseEntity.ok().headers(locationFor(saved)).body(saved);
+    return ResponseEntity.ok().headers(locationFor(saved, uriBuilder)).body(saved);
   }
 
   @RequestMapping(value = "/{id}", method = DELETE)
@@ -51,15 +51,15 @@ public class QuoteController {
     return new ResponseEntity<>(NO_CONTENT);
   }
 
-  public HttpHeaders locationFor(Quote quote) {
+  public HttpHeaders locationFor(Quote quote, UriComponentsBuilder uriBuilder) {
     HttpHeaders headers = new HttpHeaders();
-    headers.setLocation(pathFor(quote));
+    headers.setLocation(pathFor(quote, uriBuilder));
     return headers;
   }
 
-  public URI pathFor(Quote quote) {
-    return UriComponentsBuilder
-      .fromPath("/quotes/{id}")
+  public URI pathFor(Quote quote, UriComponentsBuilder uriBuilder) {
+    return uriBuilder
+      .path("/quotes/{id}")
       .buildAndExpand(quote.getId()).toUri();
   }
 
