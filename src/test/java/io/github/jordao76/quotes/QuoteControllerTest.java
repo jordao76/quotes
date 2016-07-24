@@ -63,6 +63,13 @@ public class QuoteControllerTest {
   }
 
   @Test
+  public void getQuote_invalidId() throws Exception {
+    client
+      .perform(get("/quotes/blah"))
+      .andExpect(status().isBadRequest());
+  }
+
+  @Test
   public void putQuote() throws Exception {
     String quoteText = "Quick decisions are unsafe decisions.",
       quoteAuthor = "Sophocles";
