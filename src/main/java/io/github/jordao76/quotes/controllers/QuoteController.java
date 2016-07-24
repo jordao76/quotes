@@ -37,8 +37,8 @@ public class QuoteController {
     return ResponseEntity.ok().body(saved);
   }
 
-  @RequestMapping(method = PUT)
-  public ResponseEntity<Quote> putQuote(@RequestBody @Valid Quote quote, UriComponentsBuilder uriBuilder) {
+  @RequestMapping(method = POST)
+  public ResponseEntity<Quote> createQuote(@RequestBody @Valid Quote quote, UriComponentsBuilder uriBuilder) {
     Quote saved = repo.save(quote);
     return ResponseEntity.ok().headers(locationFor(saved, uriBuilder)).body(saved);
   }

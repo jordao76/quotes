@@ -71,12 +71,12 @@ public class QuoteControllerTest {
   }
 
   @Test
-  public void putQuote() throws Exception {
+  public void postQuote() throws Exception {
     String quoteText = "Quick decisions are unsafe decisions.",
       quoteAuthor = "Sophocles";
     Quote quote = new Quote(quoteText, quoteAuthor);
     MvcResult result = client
-      .perform(put("/quotes")
+      .perform(post("/quotes")
         .contentType(APPLICATION_JSON)
         .content(serializeJson(quote)))
       .andExpect(status().isOk())
@@ -93,30 +93,30 @@ public class QuoteControllerTest {
   }
 
   @Test
-  public void putQuote_invalidText() throws Exception {
+  public void postQuote_invalidText() throws Exception {
     String quoteText = null,
       quoteAuthor = "Sophocles";
     Quote quote = new Quote(quoteText, quoteAuthor);
     client
-      .perform(put("/quotes")
+      .perform(post("/quotes")
         .contentType(APPLICATION_JSON)
         .content(serializeJson(quote)))
       .andExpect(status().isBadRequest());
   }
 
   @Test
-  public void putQuote_wrongJson() throws Exception {
+  public void postQuote_wrongJson() throws Exception {
     client
-      .perform(put("/quotes")
+      .perform(post("/quotes")
         .contentType(APPLICATION_JSON)
         .content("{\"citation\":\"to be or not to be\"}"))
       .andExpect(status().isBadRequest());
   }
 
   @Test
-  public void putQuote_notJson() throws Exception {
+  public void postQuote_notJson() throws Exception {
     client
-      .perform(put("/quotes")
+      .perform(post("/quotes")
         .contentType(APPLICATION_XML)
         .content("<root>not JSON</root>"))
       .andExpect(status().isUnsupportedMediaType());
