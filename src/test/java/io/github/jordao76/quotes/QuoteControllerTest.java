@@ -104,4 +104,13 @@ public class QuoteControllerTest {
       .andExpect(status().isBadRequest());
   }
 
+  @Test
+  public void putQuote_notJson() throws Exception {
+    client
+      .perform(put("/quotes")
+        .contentType(APPLICATION_XML)
+        .content("<root>not JSON</root>"))
+      .andExpect(status().isUnsupportedMediaType());
+  }
+
 }
