@@ -1,6 +1,7 @@
 package io.github.jordao76.quotes;
 
 import static io.github.jordao76.quotes.support.QuoteMatchers.*;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -74,10 +75,18 @@ public class QuoteControllerTest {
     String quoteText = "Quick decisions are unsafe decisions.",
       quoteAuthor = "Sophocles";
     Quote quote = new Quote(quoteText, quoteAuthor);
-    client
+    MvcResult result = client
       .perform(put("/quotes")
         .contentType(APPLICATION_JSON)
         .content(serializeJson(quote)))
+      .andExpect(status().isOk())
+      .andExpect(header().string("Location", containsString("/quotes/")))
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(contentAsQuote(matching(quoteText, quoteAuthor)))
+      .andReturn();
+    String location = result.getResponse().getHeader("Location");
+    client
+      .perform(get(location))
       .andExpect(status().isOk())
       .andExpect(content().contentType(APPLICATION_JSON_UTF8))
       .andExpect(contentAsQuote(matching(quoteText, quoteAuthor)));

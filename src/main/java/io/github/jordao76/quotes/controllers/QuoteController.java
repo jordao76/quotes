@@ -3,11 +3,14 @@ package io.github.jordao76.quotes.controllers;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import java.net.*;
+
 import javax.validation.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.*;
 
 import io.github.jordao76.quotes.domain.*;
 
@@ -37,7 +40,7 @@ public class QuoteController {
   @RequestMapping(method = PUT)
   public ResponseEntity<Quote> putQuote(@RequestBody @Valid Quote quote) {
     Quote saved = repo.save(quote);
-    return ResponseEntity.ok().body(saved);
+    return ResponseEntity.ok().headers(locationFor(saved)).body(saved);
   }
 
   @RequestMapping(value = "/{id}", method = DELETE)
@@ -46,6 +49,18 @@ public class QuoteController {
     if (saved == null) return new ResponseEntity<>(NOT_FOUND);
     repo.delete(id);
     return new ResponseEntity<>(NO_CONTENT);
+  }
+
+  public HttpHeaders locationFor(Quote quote) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.setLocation(pathFor(quote));
+    return headers;
+  }
+
+  public URI pathFor(Quote quote) {
+    return UriComponentsBuilder
+      .fromPath("/quotes/{id}")
+      .buildAndExpand(quote.getId()).toUri();
   }
 
 }
