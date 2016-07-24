@@ -126,4 +126,11 @@ public class QuoteControllerTest {
       .andExpect(status().isNotFound());
   }
 
+  @Test
+  public void deleteQuote_NotFound() throws Exception {
+    client
+      .perform(delete("/quotes/43"))
+      .andExpect(status().isNotFound());
+  }
+
 }
