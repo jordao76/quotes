@@ -43,7 +43,7 @@ public class QuoteControllerTest {
     client
       .perform(get("/quotes"))
       .andExpect(status().isOk())
-      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(content().contentType("application/hal+json"))
       .andExpect(contentAsQuotes(hasQuote(matching(firstQuoteText, firstQuoteAuthor))));
   }
 
@@ -52,7 +52,7 @@ public class QuoteControllerTest {
     client
       .perform(get("/quotes/1"))
       .andExpect(status().isOk())
-      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(content().contentType("application/hal+json"))
       .andExpect(contentAsQuote(matching(firstQuoteText, firstQuoteAuthor)));
   }
 
@@ -79,16 +79,14 @@ public class QuoteControllerTest {
       .perform(post("/quotes")
         .contentType(APPLICATION_JSON)
         .content(serializeJson(quote)))
-      .andExpect(status().isOk())
+      .andExpect(status().isCreated())
       .andExpect(header().string("Location", both(startsWith("http")).and(containsString("/quotes/"))))
-      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-      .andExpect(contentAsQuote(matching(quoteText, quoteAuthor)))
       .andReturn();
     String location = result.getResponse().getHeader("Location");
     client
       .perform(get(location))
       .andExpect(status().isOk())
-      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(content().contentType("application/hal+json"))
       .andExpect(contentAsQuote(matching(quoteText, quoteAuthor)));
   }
 
@@ -119,7 +117,7 @@ public class QuoteControllerTest {
       .perform(post("/quotes")
         .contentType(APPLICATION_XML)
         .content("<root>not JSON</root>"))
-      .andExpect(status().isUnsupportedMediaType());
+      .andExpect(status().isBadRequest());
   }
 
   @Test

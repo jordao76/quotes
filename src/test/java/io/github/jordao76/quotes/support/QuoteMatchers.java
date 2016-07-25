@@ -1,5 +1,6 @@
 package io.github.jordao76.quotes.support;
 
+import static com.fasterxml.jackson.databind.DeserializationFeature.*;
 import static org.junit.Assert.*;
 
 import java.util.stream.*;
@@ -18,7 +19,10 @@ public class QuoteMatchers {
   }
 
   public static ResultMatcher contentAsQuotes(Matcher<Quote[]> matcher) {
-    return contentAs(Quote[].class, matcher);
+    return result -> {
+      RootQuotes root = deserializeJson(result.getResponse().getContentAsString(), RootQuotes.class);
+      assertThat(root._embedded.quotes, matcher);
+    };
   }
 
   public static Matcher<Quote> matching(String text, String author) {
@@ -68,11 +72,19 @@ public class QuoteMatchers {
   public static <T> T deserializeJson(String json, Class<T> type) {
     try {
       ObjectMapper mapper = new ObjectMapper();
+      mapper.configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
       return mapper.readValue(json, type);
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
   }
 
+}
 
+class EmbeddedQuotes {
+  public Quote[] quotes;
+}
+
+class RootQuotes {
+  public EmbeddedQuotes _embedded;
 }
