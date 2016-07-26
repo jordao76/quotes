@@ -40,7 +40,7 @@ public class QuoteController {
   @RequestMapping(method = POST)
   public ResponseEntity<Quote> createQuote(@RequestBody @Valid Quote quote, UriComponentsBuilder uriBuilder) {
     Quote saved = repo.save(quote);
-    return ResponseEntity.ok().headers(locationFor(saved, uriBuilder)).body(saved);
+    return ResponseEntity.created(pathFor(saved, uriBuilder)).body(saved);
   }
 
   @RequestMapping(value = "/{id}", method = DELETE)
@@ -49,12 +49,6 @@ public class QuoteController {
     if (saved == null) return new ResponseEntity<>(NOT_FOUND);
     repo.delete(id);
     return new ResponseEntity<>(NO_CONTENT);
-  }
-
-  public HttpHeaders locationFor(Quote quote, UriComponentsBuilder uriBuilder) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.setLocation(pathFor(quote, uriBuilder));
-    return headers;
   }
 
   public URI pathFor(Quote quote, UriComponentsBuilder uriBuilder) {

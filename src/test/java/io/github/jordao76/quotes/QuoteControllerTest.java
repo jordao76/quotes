@@ -79,7 +79,7 @@ public class QuoteControllerTest {
       .perform(post("/quotes")
         .contentType(APPLICATION_JSON)
         .content(serializeJson(quote)))
-      .andExpect(status().isOk())
+      .andExpect(status().isCreated())
       .andExpect(header().string("Location", both(startsWith("http")).and(containsString("/quotes/"))))
       .andExpect(content().contentType(APPLICATION_JSON_UTF8))
       .andExpect(contentAsQuote(matching(quoteText, quoteAuthor)))
