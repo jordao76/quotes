@@ -4,5 +4,5 @@ import org.springframework.data.repository.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface QuoteRepository extends CrudRepository<Quote, Long> {
+public interface QuoteRepository extends PagingAndSortingRepository<Quote, Long> {
 }

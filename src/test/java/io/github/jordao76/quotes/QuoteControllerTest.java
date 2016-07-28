@@ -57,6 +57,15 @@ public class QuoteControllerTest {
   }
 
   @Test
+  public void getRandomQuote_checkResultNotNull() throws Exception {
+    client
+      .perform(get("/quotes/any"))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(contentAsQuote(not(nullValue())));
+  }
+
+  @Test
   public void getQuote_notFound() throws Exception {
     client
       .perform(get("/quotes/42"))
