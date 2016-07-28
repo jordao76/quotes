@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jordao76/quotes.svg)](https://travis-ci.org/jordao76/quotes)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/jordao76/quotes/blob/master/LICENSE)
 
-> _“Quotation, n: The act of repeating erroneously the words of another.” -- Ambrose Bierce_
+> “Quotation, n: The act of repeating erroneously the words of another.”<br/>— _Ambrose Bierce_
 
 Simple spring-boot service for citations.
 
