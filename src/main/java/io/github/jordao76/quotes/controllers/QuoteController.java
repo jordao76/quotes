@@ -4,10 +4,12 @@ import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.net.*;
+import java.util.*;
 
 import javax.validation.*;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.*;
@@ -28,6 +30,13 @@ public class QuoteController {
   @RequestMapping(method = GET)
   public Iterable<Quote> getQuotes() {
     return repo.findAll();
+  }
+
+  @RequestMapping(value = "/any", method = GET)
+  public Quote getRandomQuote() {
+    int total = (int)repo.count();
+    int which = new Random().nextInt(total);
+    return repo.findAll(new PageRequest(which, 1)).getContent().get(0);
   }
 
   @RequestMapping(value = "/{id}", method = GET)

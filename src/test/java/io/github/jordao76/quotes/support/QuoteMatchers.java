@@ -13,11 +13,11 @@ import io.github.jordao76.quotes.domain.*;
 
 public class QuoteMatchers {
 
-  public static ResultMatcher contentAsQuote(Matcher<Quote> matcher) {
+  public static ResultMatcher contentAsQuote(Matcher<? super Quote> matcher) {
     return contentAs(Quote.class, matcher);
   }
 
-  public static ResultMatcher contentAsQuotes(Matcher<Quote[]> matcher) {
+  public static ResultMatcher contentAsQuotes(Matcher<? super Quote[]> matcher) {
     return contentAs(Quote[].class, matcher);
   }
 
