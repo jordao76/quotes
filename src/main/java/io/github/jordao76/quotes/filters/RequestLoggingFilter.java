@@ -12,7 +12,7 @@ import org.springframework.web.filter.*;
 @Component
 public class RequestLoggingFilter extends OncePerRequestFilter {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(RequestLoggingFilter.class);
+  private final Logger logger = LoggerFactory.getLogger(getClass());
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -20,8 +20,8 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
 
     filterChain.doFilter(request, response);
 
-    if (LOGGER.isDebugEnabled()) {
-      LOGGER.debug("HTTP {} for {} {}",
+    if (logger.isDebugEnabled()) {
+      logger.debug("HTTP {} for {} {}",
         value("status", response.getStatus()),
         value("method", request.getMethod()),
         value("endpoint", request.getRequestURI()));
