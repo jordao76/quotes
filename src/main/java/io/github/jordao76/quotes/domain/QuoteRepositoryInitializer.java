@@ -3,7 +3,11 @@ package io.github.jordao76.quotes.domain;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.core.io.*;
 import org.springframework.stereotype.*;
+
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.dataformat.yaml.*;
 
 @Component
 public class QuoteRepositoryInitializer {
@@ -15,16 +19,15 @@ public class QuoteRepositoryInitializer {
   }
 
   private List<Quote> getInitialQuotes() {
-    return Arrays.asList(
-      new Quote(
-        "Any sufficiently advanced technology is indistinguishable from magic.",
-        "Arthur C. Clarke"),
-      new Quote(
-        "Perfection (in design) is achieved not when there is nothing more to add, but rather when there is nothing more to take away.",
-        "Antoine de Saint-Exupery"),
-      new Quote(
-        "On two occasions I have been asked, 'Pray, Mr. Babbage, if you put into the machine wrong figures, will the right answers come out?' I am not able rightly to apprehend the kind of confusion of ideas that could provoke such a question.",
-        "Charles Babbage"));
+    try {
+      ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+      return Arrays.asList(
+        mapper.readValue(
+          new ClassPathResource("quotes.yml").getInputStream(),
+          Quote[].class));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 
 }
