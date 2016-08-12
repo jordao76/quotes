@@ -66,7 +66,7 @@ public class QuoteControllerTest {
   @Test
   public void getQuote_notFound() throws Exception {
     client
-      .perform(get("/quotes/42"))
+      .perform(get("/quotes/99999"))
       .andExpect(status().isNotFound());
   }
 

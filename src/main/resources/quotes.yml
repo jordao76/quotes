@@ -9,8 +9,530 @@
   author: Antoine de Saint-Exupery
 -
   text: >
-    On two occasions I have been asked, 'Pray, Mr. Babbage, if you put into
-    the machine wrong figures, will the right answers come out?' I am not able
+    On two occasions I have been asked, "Pray, Mr. Babbage, if you put into
+    the machine wrong figures, will the right answers come out?" I am not able
     rightly to apprehend the kind of confusion of ideas that could provoke such
     a question.
   author: Charles Babbage
+-
+  text: >
+    The critical design tool for software development is a mind well educated in
+    design principles. It is not the UML or any other technology.
+  author: Craig Larman
+-
+  text: >
+    There are two ways of constructing a software design: One way is to make it
+    so simple that there are obviously no deficiencies, and the other way is to
+    make it so complicated that there are no obvious deficiencies.
+    The first method is far more difficult.
+  author: C. A. R. Hoare
+-
+  text: >
+    Design and programming are human activities; forget that and all is lost.
+  author: Bjarne Stroustrup
+-
+  text: >
+    ... with proper design, the features come cheaply.
+    This approach is arduous, but continues to succeed.
+  author: Dennis Ritchie
+-
+  text: >
+    Organizations that design systems are constrained to produce copies of the
+    communication structures of these organizations.
+  author: Conway's law
+-
+  text: >
+    The best designers will use many design patterns that dovetail and
+    intertwine to produce a greater whole.
+  author: Erich Gamma
+-
+  text: >
+    Complexity is a sign of technical immaturity. Simplicity of use is the real
+    sign of a well designed product whether it is an ATM or a Patriot missile.
+  author: Daniel T. Ling
+-
+  text: Great designs come from great designers.
+  author: Frederick P. Brooks
+-
+  text: >
+    At first sight, the idea of any rules or principles being superimposed on
+    the creative mind seems more likely to hinder than to help, but this is
+    quite untrue in practice. Disciplined thinking focuses inspiration rather
+    than blinkers it.
+  author: G. L. Glegg
+-
+  text: >
+    Changes in software design will eventually mean "one step forward, two steps
+    back". It is inevitable.
+  author: Salman Arshad
+-
+  text: >
+    A little retrospection shows that although many fine, useful software
+    systems have been designed by committees and built as part of multipart
+    projects, those software systems that have excited passionate fans are those
+    that are the products of one or a few designing minds, great designers.
+  author: Frederick P. Brooks
+-
+  text: >
+    The complexity of software is an essential property, not an accidental one.
+    Hence, descriptions of a software entity that abstract away its complexity
+    often abstracts away its essence.
+  author: Frederick P. Brooks
+-
+  text: >
+    Walking on water and developing software from a specification are easy if
+    both are frozen.
+  author: Edward V. Berard
+-
+  text: >
+    For now, we really need to learn to be like doctors. They are able to say,
+    quite comfortably and confidently and with conviction, "These things are
+    never certain." Doctors seldom if ever state with certainty what the outcome
+    of any procedure might be. Yet software managers, operating in a far less
+    disciplined and less data-driven environment... blithely promise features,
+    dates, and outcomes not especially susceptible to prediction.
+  author: Jim McCarthy
+-
+  text: >
+    Any fool can write code that a computer can understand. Good programmers
+    write code that humans can understand.
+  author: Martin Fowler
+-
+  text: >
+    It's OK to figure out murder mysteries, but you shouldn't need to figure
+    out code. You should be able to read it.
+  author: Steve C. McConnell
+-
+  text: >
+    People also underestimate the time they spend debugging. They underestimate
+    how much time they can spend chasing a long bug. With testing, I know
+    straight away when I added a bug. That lets me fix the bug immediately,
+    before it can crawl off and hide. There are few things more frustrating or
+    time wasting than debugging. Wouldn't it be a hell of a lot quicker if we
+    just didn't create the bugs in the first place?
+  author: Martin Fowler
+-
+  text: >
+    The job of the average manager requires a shift in focus every few minutes.
+    The job of the average software developer requires that the developer not
+    shift focus more often than every few hours.
+  author: Steve C. McConnell
+-
+  text: >
+    When you actually sit down to write some code, you learn things that you
+    didn't get from thinking about them in modeling terms; there is a feedback
+    process there that you can only really get at from executing some things
+    and seeing what works.
+  author: Martin Fowler
+-
+  text: >
+    Another design principle that's struck me very firmly, particularly
+    recently, is making things explicit. Make the code very explicitly say
+    things... A dictionary is not explicit. A class, even though you have to
+    do all the work writing in the member variables and accessors, is explicit.
+    You can just look at that source code and know what data is present.
+  author: Martin Fowler
+-
+  text: >
+    Refactoring improves the design. What is the business case of good design?
+    To me, it's that you can make changes to the software more easily in the
+    future. Refactoring is about saying, "Let's restructure this system in order
+    to make it easier to change it." The corollary is that it's pointless to
+    refactor a system you will never change, because you'll never get a payback.
+    But if you will be changing the system, either to fix bugs or add features,
+    keeping the system well factored or making it better factored will give you
+    a payback as you make those changes.
+  author: Martin Fowler
+-
+  text: ...if you're afraid to change something it is clearly poorly designed.
+  author: Martin Fowler
+-
+  text: >
+    The problem with quick and dirty, as some people have said, is that the
+    dirty remains long after the quick has been forgotten.
+  author: Steve C. McConnell
+-
+  text: >
+    Testing by itself does not improve software quality. Test results are an
+    indicator of quality, but in and of themselves, they don't improve it.
+    Trying to improve software quality by increasing the amount of testing is
+    like trying to lose weight by weighing yourself more often. What you eat
+    before you step onto the scale determines how much you will weigh, and the
+    software development techniques you use determine how many errors testing
+    will find. If you want to lose weight, don't buy a new scale; change your
+    diet. If you want to improve your software, don't test more; develop better.
+  author: Steve C. McConnell
+-
+  text: >
+    Horst Rittel and Melvin Webber defined a 'wicked' problem as one that
+    could be clearly defined only by solving it, or by solving part of it.
+    This paradox implies essentially, that we have to 'solve' the problem once
+    in order to clearly define it and then solve it again to create a solution
+    that works. This process is almost motherhood and apple pie in software
+    development.
+  author: Steve C. McConnell
+-
+  text: >
+    It's better to wait for a productive programmer to become available than it
+    is to wait for the first available programmer to become productive.
+  author: Steve C. McConnell
+-
+  text: >
+    Early in the project you can have firm cost and schedule targets or a
+    firm feature set, but not both.
+  author: Steve C. McConnell
+-
+  text: >
+    The source code is often the only accurate description of the software.
+    On many projects, the only documentation available to programmers is the
+    code itself. Requirements specifications and design documents can go
+    out of date, but the source code is always up to date. Consequently, it's
+    imperative that the code be of the highest possible quality.
+  author: Steve C. McConnell
+-
+  text: >
+    If it ain't broke, don't fix it, the saying goes. Common software
+    development practices are seriously broken, and the cost of not fixing them
+    has become extreme. Traditional thinking would have it that the change
+    represents the greatest risk. In software's case, the greatest risk lies
+    with not changing - staying mired in unhealthy, profligate development
+    practices instead of switching to practices that were proven more effective
+    many years ago.
+  author: Steve C. McConnell
+-
+  text: >
+    Software projects fail for one of two general reasons: the project team
+    lacks the knowledge to conduct a software project successfully, or the
+    project team lacks the resolve to conduct a project effectively.
+  author: Steve C. McConnell
+-
+  text: >
+    In software, the chain isn't as strong as its weakest link; it's as weak as
+    all the weak links multiplied together.
+  author: Steve C. McConnell
+-
+  text: >
+    A brute force solution that works is better than an elegant solution that
+    doesn't work.
+  author: Steve C. McConnell
+-
+  text: >
+    The picture of the software designer deriving his design in a rational,
+    error-free way from a statement of requirements is quite unrealistic.
+    No system has ever been built that way, and probably none ever will.
+    Even the small program developments shown in textbooks and papers are
+    unreal. They have been revised and polished until the author has shown us
+    what he wishes he had done, not what actually did happen.
+  author: Dave Parnas
+-
+  text: >
+    It is the mark of an instructed mind to rest satisfied with the degree of
+    precision which the nature of the subject admits, and not to seek exactness
+    when only an approximation of the truth is possible.
+  author: Aristotle
+-
+  text: >
+    We feel that the only way to develop software reliably, and to make our
+    developments easier to understand and maintain, is to follow what we call
+    the DRY principle: Every piece of knowledge must have a single, unambiguous,
+    authoritative representation within a system. Why do we call it DRY?
+    DRY - Don''t Repeat Yourself. The alternative is to have the same thing
+    expressed in two or more places. If you change one, you have to remember to
+    change the others... It isn't a question of whether you'll remember:
+    it's a question of when you will forget.
+  author: A. Hunt and D. Thomas
+-
+  text: >
+    Each pattern describes a problem which occurs over and over again in our
+    environment, and then describes the core of the solution to that problem,
+    in such a way that you can use this solution a million times over,
+    without ever doing it the same way twice.
+  author: Christopher Alexander
+-
+  text: >
+    Programs must be written for people to read, and only incidentally for
+    machines to execute.
+  author: Abelson and Sussman
+-
+  text: I love deadlines. I like the whooshing sound they make as they fly by.
+  author: Douglas Adams
+-
+  text: >
+    ... our [management] basic ideas about what are better or worse practices
+    are strongly influenced by people we perceive as knowing how to make
+    software.
+  author: James Bach
+-
+  text: The amateur software engineer is always in search of magic.
+  author: Grady Booch
+-
+  text: >
+    Conceptual integrity is the most important consideration in system design.
+  author: Frederick P. Brooks
+-
+  text: >
+    Good judgement comes from experience, and experience comes from
+    bad judgement.
+  author: Frederick P. Brooks
+-
+  text: There is no silver bullet.
+  author: Frederick P. Brooks
+-
+  text: >
+    The scaling-up of a software entity is not merely a repetition of the same
+    elements on a larger size; it is necessarily an increase in the number of
+    different elements. In most cases, the elements interact with each other in
+    some nonlinear fashion, and the complexity of the whole increases much more
+    than linearly.
+  author: Frederick P. Brooks
+-
+  text: >
+    ...well over half of the time you spend working on a project (on the order
+    of 70 percent) is spent thinking, and no tool, no matter how advanced,
+    can think for you. Consequently, even if a tool did everything except the
+    thinking for you -- if it wrote 100 percent of the code, wrote 100 percent
+    of the documentation, did 100 percent of the testing, burned the CD-ROMs,
+    put them in boxes, and mailed them to your customers -- the best you could
+    hope for would be a 30 percent improvement in productivity. In order to do
+    better than that, you have to change the way you think.
+  author: Frederick P. Brooks
+-
+  text: >
+    The tools we use have a profound (and devious!) influence on our thinking
+    habits, and, therefore, on our thinking abilities.
+  author: Edsger Dijkstra
+-
+  text: >
+    Elegance is not a dispensable luxury but a factor that decides between
+    success and failure.
+  author: Edsger Dijkstra
+-
+  text: >
+    The competent programmer is fully aware of the strictly limited size of his
+    own skull; therefore he approaches the programming task in full humility,
+    and among other things he avoids clever tricks like the plague.
+  author: Edsger Dijkstra
+-
+  text: >
+    If debugging is the process of removing bugs, then programming must be the
+    process of putting them in.
+  author: Edsger Dijkstra
+-
+  text: >
+    Program testing can be used to show the presence of bugs,
+    but never to show their absence!
+  author: Edsger Dijkstra
+-
+  text: >
+    I mean, if 10 years from now, when you are doing something quick and dirty,
+    you suddenly visualize that I am looking over your shoulders and say to
+    yourself, "Dijkstra would not have liked this", well that would be enough
+    immortality for me.
+  author: Edsger Dijkstra
+-
+  text: >
+    Computer Science is no more about computers than astronomy is about
+    telescopes.
+  author: Edsger Dijkstra
+-
+  text: >
+    Why has elegance found so little following? Elegance has the disadvantage
+    that hard work is needed to achieve it and a good education to appreciate
+    it.
+  author: Edsger Dijkstra
+-
+  text: >
+    The question of whether computers can think is like the question of whether
+    submarines can swim.
+  author: Edsger Dijkstra
+-
+  text: >
+    Always design your program as a member of a whole family of programs,
+    including those that are likely to succeed it.
+  author: Edsger Dijkstra
+-
+  text: >
+    A programming language is a tool that has a profound influence on our
+    thinking habits.
+  author: Edsger Dijkstra
+-
+  text: Fix the cause, not the symptom.
+  author: Steve Maguire
+-
+  text: Make code intelligible at the point of call. Avoid Boolean arguments.
+  author: Steve Maguire
+-
+  text: "Throw away your bag of tricks. Be truly clever: Write boring code."
+  author: Steve Maguire
+-
+  text: >
+    Don't write multipurpose functions. Write separate functions to allow
+    stronger argument validation.
+  author: Steve Maguire
+-
+  text: Either remove implicit assumptions, or assert that they are valid.
+  author: Steve Maguire
+-
+  text: >
+    And then it occurred to me that a computer is a stupid machine with the
+    ability to do incredibly smart things, while computer programmers are smart
+    people with the ability to do incredibly stupid things.
+    They are, in short, a perfect match.
+  author: Bill Bryson
+-
+  text: >
+    Another effective technique is to explain your code to someone else.
+    This will often cause you to explain the bug to yourself.
+    Sometimes it takes no more than a few sentences, followed by an embarrassed
+    "Never mind, I see what's wrong. Sorry to bother you." This works remarkably
+    well; you can even use non-programmers as listeners.
+    One university computer center kept a teddy bear near the help desk.
+    Students with mysterious bugs were required to explain them to the bear
+    before they could speak to a human counselor.
+  author: Brian Kernighan and Rob Pike
+-
+  text: >
+    A good programmer is someone who always looks both ways before crossing a
+    one-way street.
+  author: Doug Linder
+-
+  text: Any sufficiently advanced bug is indistinguishable from a feature.
+  author: Rich Kulawiec
+-
+  text: >
+    At Group L, Stoffel oversees six first-rate programmers, a managerial
+    challenge roughly equivalent to herding cats.
+  author: The Washington Post Magazine, 9 June 1985
+-
+  text: One man's crappy software is another man's full time job.
+  author: Jessica Gaston
+-
+  text: >
+    The best performance improvement is the transition from the nonworking
+    state to the working state.
+  author: J. Osterhout
+-
+  text: >
+    The magic of myth and legend has come true in our time. One types the
+    correct incantation on a keyboard, and a display screen comes to life,
+    showing things that never were nor could be.... The computer resembles the
+    magic of legend in this respect, too.  If one character, one pause, of the
+    incantation is not strictly in proper form, the magic doesn't work.
+    Human beings are not accustomed to being perfect, and few areas of human
+    activity demand it.  Adjusting to the requirement for perfection is,
+    I think, the most difficult part of learning to program.
+  author: Frederick P. Brooks
+-
+  text: >
+    The only way for errors to occur in a program is by being put there by the
+    author. No other mechanisms are known. Programs can't acquire bugs by
+    sitting around with other buggy programs.
+  author: Harlan Mills
+-
+  text: >
+    When debugging, novices insert corrective code; experts remove defective
+    code.
+  author: Richard Pattis
+-
+  text: >
+    When you catch bugs early, you also get fewer compound bugs.
+    Compound bugs are two separate bugs that interact: you trip going
+    downstairs, and when you reach for the handrail it comes off in your hand.
+  author: Paul Graham
+-
+  text: >
+    Theirs not to make reply, Theirs not to reason why, Theirs but to do & die.
+  author: Alfred, Lord Tennyson
+-
+  text: You can fix it now with an eraser, or fix it later with a sledgehammer.
+  author: Frank Lloyd Wright
+-
+  text: I'd rather write programs to write programs than write programs.
+  author: Dick Sites
+-
+  text: >
+    If we wish to count lines of code, we should not regard them as
+    *lines produced* but as *lines spent*.
+  author: Edsger Dijkstra
+-
+  text: >
+    In matters of style, swim with the current; in matters of principle,
+    stand like a rock.
+  author: Thomas Jefferson
+-
+  text: XML wasn't designed to be edited by humans on a regular basis.
+  author: Guido van Rossum
+-
+  text: >
+    You can't imagine why anyone would do something cheap, trivial, fragile
+    and wrong when a correct and robust solution could be implemented by doing
+    work and applying rational thought? Apparently you are new to this planet;
+    we have this thing called "human nature". :-)
+  author: Eric Lippert
+-
+  text: >
+    A complex system that works is invariably found to have evolved from a
+    simple system that worked.
+  author: John Gall
+-
+  text: >
+    Optimism is an occupational hazard of programming;
+    feedback is the treatment.
+  author: Kent Beck
+-
+  text: Trying to outsmart a compiler defeats much of the purpose of using one.
+  author: Kernighan & Plauger
+-
+  text: >
+    You wanted a banana but what you got was a gorilla holding the banana
+    and the entire jungle.
+  author: Joe Armstrong
+-
+  text: >
+    When someone says: 'I want a programming language in which I need only
+    say what I wish done', give him a lollipop.
+  author: Alan J. Perlis
+-
+  text: Error, no keyboard -- press F1 to continue.
+  author: Anonymous
+-
+  text: >
+    It occurred to me that when you have a proof that goes on for pages and
+    pages, it's far more likely to contain errors in the proof as our own
+    intuition about the trivial statements that it's trying to prove.
+  author: Joel Spolsky
+-
+  text: >
+    Being able to write clearly on technical topics is the difference between
+    being a grunt individual contributor programmer and being a leader.
+  author: Joel Spolsky
+-
+  text: >
+    The main thing you don't learn with a CS degree is how to develop software,
+    although you will probably build up certain muscles in your brain that may
+    help you later if you decide that developing software is what you want to
+    do.
+  author: Joel Spolsky
+-
+  text: >
+    Most people, sometimes in their lives, stumble across truth.
+    And most jump up, brush themselves off, and hurry on about their
+    business as if nothing had happened.
+  author: Winston Churchill
+-
+  text: >
+    As usual, the idealists are 100% right in principle and, as usual,
+    the pragmatists are right in practice.
+  author: Joel Spolsky
+-
+  text: >
+    I suppose it is tempting, if the only tool you have is a hammer,
+    to treat everything as if it were a nail.
+  author: Abraham Maslow, The Psychology of Science, 1966
+-
+  text: Those who don't know history are doomed to repeat it.
+  author: Edmund Burke
+-
+  text: >
+    A bug or a quality issue is not something you negotiate to make it go away.
+  author: François-David Lessard
