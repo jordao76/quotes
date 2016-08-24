@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: jordao
+      changes:
+        - createTable:
+            tableName: quote
+            columns:
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true, nullable: false}}
+              - column: {name: author, type: varchar(255), constraints: {nullable: false}}
+              - column: {name: text, type: varchar(1000), constraints: {nullable: false}}

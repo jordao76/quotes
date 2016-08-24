@@ -11,7 +11,6 @@ public class Quote {
   private Long id;
 
   @NotNull
-  @Column(length = 1024)
   private String text;
 
   @NotNull
