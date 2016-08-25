@@ -31,8 +31,7 @@ public class QuoteControllerTest {
     client = webAppContextSetup(wac).build();
   }
 
-  // first quote added to the repository (@see QuoteRepositoryInitializer),
-  // should have ID = 1
+  // first quote added to the repository, should have ID = 1
   String firstQuoteText = "Any sufficiently advanced technology is indistinguishable from magic.";
   String firstQuoteAuthor = "Arthur C. Clarke";
 
