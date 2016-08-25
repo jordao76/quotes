@@ -23,7 +23,7 @@ public class QuoteRepositoryInitializer {
       ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
       return Arrays.asList(
         mapper.readValue(
-          new ClassPathResource("quotes.yml").getInputStream(),
+          new ClassPathResource("db/changelog/db.initial-quotes.yaml").getInputStream(),
           Quote[].class));
     } catch (Exception e) {
       throw new RuntimeException(e);
