@@ -107,7 +107,10 @@ public class QuoteControllerTest {
       .perform(post("/quotes")
         .contentType(APPLICATION_JSON)
         .content(serializeJson(quote)))
-      .andExpect(status().isBadRequest());
+      .andExpect(status().isBadRequest())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(jsonPath("$.errors", hasSize(1)))
+      .andExpect(jsonPath("$.errors[0]", is("Quote text must not be null")));
   }
 
   @Test

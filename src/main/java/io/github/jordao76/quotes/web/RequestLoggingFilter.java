@@ -1,4 +1,4 @@
-package io.github.jordao76.quotes.filters;
+package io.github.jordao76.quotes.web;
 
 import java.io.*;
 

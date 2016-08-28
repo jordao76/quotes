@@ -10,10 +10,10 @@ public class Quote {
   @GeneratedValue
   private Long id;
 
-  @NotNull
+  @NotNull(message = "Quote text must not be null")
   private String text;
 
-  @NotNull
+  @NotNull(message = "Quote author must not be null, use \"Anonymous\" for an unknown author")
   private String author;
 
   @SuppressWarnings("unused")
