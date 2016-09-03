@@ -53,9 +53,9 @@ public class QuoteController {
   }
 
   @RequestMapping(value = "/{id}", method = DELETE)
-  public ResponseEntity<Void> deleteQuote(@PathVariable Long id) {
+  public ResponseEntity<?> deleteQuote(@PathVariable Long id) {
     Quote saved = repo.findOne(id);
-    if (saved == null) return new ResponseEntity<>(NOT_FOUND);
+    if (saved == null) return new Problem(NOT_FOUND).asResponse();
     repo.delete(id);
     return new ResponseEntity<>(NO_CONTENT);
   }

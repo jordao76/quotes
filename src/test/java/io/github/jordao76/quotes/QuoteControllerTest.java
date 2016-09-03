@@ -151,7 +151,10 @@ public class QuoteControllerTest {
   public void deleteQuote_notFound() throws Exception {
     client
       .perform(delete("/quotes/99999"))
-      .andExpect(status().isNotFound());
+      .andExpect(status().isNotFound())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(jsonPath("$.status", is(404)))
+      .andExpect(jsonPath("$.title", is("Not Found")));
   }
 
   @Test
