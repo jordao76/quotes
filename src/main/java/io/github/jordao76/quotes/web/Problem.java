@@ -14,8 +14,12 @@ public class Problem {
 
   private String type;
   private String title;
-  private int status;
+  private HttpStatus httpStatus;
   private List<String> errors;
+
+  public Problem(HttpStatus httpStatus) {
+    this(null, httpStatus.getReasonPhrase(), httpStatus, null);
+  }
 
   public Problem(HttpStatus httpStatus, List<String> errors) {
     this(null, httpStatus.getReasonPhrase(), httpStatus, errors);
@@ -28,13 +32,17 @@ public class Problem {
   public Problem(String type, String title, HttpStatus httpStatus, List<String> errors) {
     this.type = type;
     this.title = title;
-    this.status = httpStatus.value();
+    this.httpStatus = httpStatus;
     this.errors = errors;
   }
 
   public String getType() { return type; }
   public String getTitle() { return title; }
-  public int getStatus() { return status; }
+  public int getStatus() { return httpStatus.value(); }
   public List<String> getErrors() { return errors; }
+
+  public ResponseEntity<Problem> asResponse() {
+    return new ResponseEntity<>(this, httpStatus);
+  }
 
 }

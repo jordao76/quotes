@@ -40,9 +40,9 @@ public class QuoteController {
   }
 
   @RequestMapping(value = "/{id}", method = GET)
-  public ResponseEntity<Quote> getQuote(@PathVariable Long id) {
+  public ResponseEntity<?> getQuote(@PathVariable Long id) {
     Quote saved = repo.findOne(id);
-    if (saved == null) return new ResponseEntity<>(NOT_FOUND);
+    if (saved == null) return new Problem(NOT_FOUND).asResponse();
     return ResponseEntity.ok().body(saved);
   }
 
