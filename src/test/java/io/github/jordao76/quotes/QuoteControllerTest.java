@@ -131,7 +131,10 @@ public class QuoteControllerTest {
       .perform(post("/quotes")
         .contentType(APPLICATION_XML)
         .content("<root>not JSON</root>"))
-      .andExpect(status().isUnsupportedMediaType());
+      .andExpect(status().isUnsupportedMediaType())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(jsonPath("$.status", is(415)))
+      .andExpect(jsonPath("$.title", is("Unsupported Media Type")));
   }
 
   @Test

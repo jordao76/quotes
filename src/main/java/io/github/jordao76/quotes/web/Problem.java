@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.*;
 
 // based on https://tools.ietf.org/html/rfc7807
 @JsonInclude(NON_NULL)
-public class Problem {
+public final class Problem {
 
-  private String type;
-  private String title;
-  private HttpStatus httpStatus;
-  private List<String> errors;
+  private final String type;
+  private final String title;
+  private final HttpStatus httpStatus;
+  private final List<String> errors;
 
   public Problem(HttpStatus httpStatus) {
     this(null, httpStatus.getReasonPhrase(), httpStatus, null);
