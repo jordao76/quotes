@@ -21,4 +21,4 @@ $ mvn package
 $ java -jar target/quotes-0.0.1-SNAPSHOT.jar
 ```
 
-Then go to `http://localhost:8080/quotes`.
+Then go to `http://localhost:8080/quotes/any` to get a random quote.
