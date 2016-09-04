@@ -1,0 +1,11 @@
+spring:
+  mvc.favicon.enabled: false
+  output.ansi.enabled: ALWAYS
+  jpa.hibernate.ddl-auto: none
+  h2.console.enabled: true
+
+logging.level:
+  root: INFO
+  io.github.jordao76.quotes.web.RequestLoggingFilter: DEBUG
+
+management.context-path: /manage
