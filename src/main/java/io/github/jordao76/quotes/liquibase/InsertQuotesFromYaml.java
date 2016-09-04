@@ -21,10 +21,13 @@ public class InsertQuotesFromYaml implements CustomSqlChange {
 
   @Override
   public SqlStatement[] generateStatements(Database database) throws CustomChangeException {
-    return getInitialQuotes().stream().map(this::insertQuote).toArray(size -> new SqlStatement[size]);
+    return readQuotes()
+      .stream()
+      .map(this::insertQuote)
+      .toArray(size -> new SqlStatement[size]);
   }
 
-  private List<Quote> getInitialQuotes() {
+  private List<Quote> readQuotes() {
     try {
       ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
       return Arrays.asList(
