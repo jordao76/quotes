@@ -3,6 +3,7 @@ package io.github.jordao76.quotes;
 import static io.github.jordao76.quotes.support.QuoteMatchers.*;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.http.MediaType.*;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
@@ -11,6 +12,7 @@ import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.context.*;
+import org.springframework.security.test.context.support.*;
 import org.springframework.test.context.junit4.*;
 import org.springframework.test.web.servlet.*;
 import org.springframework.web.context.*;
@@ -28,7 +30,9 @@ public class QuoteControllerTest {
 
   @Before
   public void setup() {
-    client = webAppContextSetup(wac).build();
+    client = webAppContextSetup(wac)
+      .apply(springSecurity())
+      .build();
   }
 
   // first quote added to the repository, should have ID = 1
@@ -80,6 +84,7 @@ public class QuoteControllerTest {
   }
 
   @Test
+  @WithMockUser(roles="MAINTAINER")
   public void postQuote() throws Exception {
     String quoteText = "Quick decisions are unsafe decisions.",
       quoteAuthor = "Sophocles";
@@ -102,6 +107,32 @@ public class QuoteControllerTest {
   }
 
   @Test
+  public void postQuote_unauthenticated() throws Exception {
+    String quoteText = "Quick decisions are unsafe decisions.",
+      quoteAuthor = "Sophocles";
+    Quote quote = new Quote(quoteText, quoteAuthor);
+    client
+      .perform(post("/quotes")
+        .contentType(APPLICATION_JSON)
+        .content(serializeJson(quote)))
+      .andExpect(status().isUnauthorized());
+  }
+
+  @Test
+  @WithMockUser(roles="ADMIN")
+  public void postQuote_wrong_role() throws Exception {
+    String quoteText = "Quick decisions are unsafe decisions.",
+      quoteAuthor = "Sophocles";
+    Quote quote = new Quote(quoteText, quoteAuthor);
+    client
+      .perform(post("/quotes")
+        .contentType(APPLICATION_JSON)
+        .content(serializeJson(quote)))
+      .andExpect(status().isForbidden());
+  }
+
+  @Test
+  @WithMockUser(roles="MAINTAINER")
   public void postQuote_invalidText() throws Exception {
     String quoteText = null,
       quoteAuthor = "Sophocles";
@@ -117,6 +148,7 @@ public class QuoteControllerTest {
   }
 
   @Test
+  @WithMockUser(roles="MAINTAINER")
   public void postQuote_wrongJson() throws Exception {
     client
       .perform(post("/quotes")
@@ -126,6 +158,7 @@ public class QuoteControllerTest {
   }
 
   @Test
+  @WithMockUser(roles="MAINTAINER")
   public void postQuote_notJson() throws Exception {
     client
       .perform(post("/quotes")
@@ -138,6 +171,7 @@ public class QuoteControllerTest {
   }
 
   @Test
+  @WithMockUser(roles="MAINTAINER")
   public void deleteSecondQuote() throws Exception {
     client
       .perform(get("/quotes/2"))
@@ -151,6 +185,22 @@ public class QuoteControllerTest {
   }
 
   @Test
+  public void delete_unauthenticated() throws Exception {
+    client
+      .perform(delete("/quotes/2"))
+      .andExpect(status().isUnauthorized());
+  }
+
+  @Test
+  @WithMockUser(roles="ADMIN")
+  public void delete_wrong_role() throws Exception {
+    client
+      .perform(delete("/quotes/2"))
+      .andExpect(status().isForbidden());
+  }
+
+  @Test
+  @WithMockUser(roles="MAINTAINER")
   public void deleteQuote_notFound() throws Exception {
     client
       .perform(delete("/quotes/99999"))
@@ -161,6 +211,7 @@ public class QuoteControllerTest {
   }
 
   @Test
+  @WithMockUser(roles="MAINTAINER")
   public void deleteQuote_invalidId() throws Exception {
     client
       .perform(delete("/quotes/jazzy"))

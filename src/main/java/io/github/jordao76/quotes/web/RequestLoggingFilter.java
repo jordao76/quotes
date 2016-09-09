@@ -6,6 +6,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import org.slf4j.*;
+import org.springframework.security.core.*;
+import org.springframework.security.core.context.*;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.filter.*;
 
@@ -21,10 +24,16 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
     filterChain.doFilter(request, response);
 
     if (logger.isDebugEnabled()) {
-      logger.debug("HTTP {} for {} {}",
+      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+      String username = "[anonymous]";
+      if (auth.getPrincipal() instanceof User) {
+        username = ((User)auth.getPrincipal()).getUsername();
+      }
+      logger.debug("HTTP {} for {} {}; user: {}",
         value("status", response.getStatus()),
         value("method", request.getMethod()),
-        value("endpoint", request.getRequestURI()));
+        value("endpoint", request.getRequestURI()),
+        value("username", username));
     }
 
   }
