@@ -21,4 +21,37 @@ $ mvn package
 $ java -jar target/quotes-0.0.1-SNAPSHOT.jar
 ```
 
-Then go to `http://localhost:8080/quotes/any` to get a random quote.
+Then go to `http://localhost:8080/quotes/any` to get a random quote in JSON (using [jq](https://stedolan.github.io/jq/)):
+
+```sh
+$ curl -s localhost:8080/quotes/any | jq .
+```
+```json
+{
+  "id": 46,
+  "text": "There is no silver bullet.",
+  "author": "Frederick P. Brooks"
+}
+```
+
+`/quotes` will return all quotes and `/quotes/{id}` will return the quote with ID `{id}`.
+
+To create and delete quotes, HTTP basic authentication is required, with a user with the role `MAINTAINER` (the default user `admin:password` has all the relevant roles).
+
+To create a quote issue a POST request to `/quotes`:
+
+```sh
+$ curl -i -H "Authorization: Basic $(echo -n admin:password | base64)" \
+  -H "Content-Type: application/json" \
+  -d '{"text":"Quick decisions are unsafe decisions","author":"Sophocles"}' \
+  -X POST localhost:8080/quotes
+```
+
+To delete quote with ID `{id}` issue a DELETE request to `/quotes/{id}`:
+
+```sh
+$ curl -i -H "Authorization: Basic $(echo -n admin:password | base64)" \
+  -X DELETE localhost:8080/quotes/23
+```
+
+The [actuator](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready) endpoints are exposed through `/manage`, and also require authentication, with a user with the role `ADMIN`.
