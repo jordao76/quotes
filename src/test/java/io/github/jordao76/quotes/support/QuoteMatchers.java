@@ -39,6 +39,10 @@ public final class QuoteMatchers {
     };
   }
 
+  public static Matcher<Quote> withAuthor(String author) {
+    return hasAuthor(author);
+  }
+
   public static Matcher<Quote> hasAuthor(String author) {
     return new TypeSafeMatcher<Quote>() {
       @Override

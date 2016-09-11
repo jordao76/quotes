@@ -28,12 +28,16 @@ public class QuoteController {
   }
 
   @RequestMapping(method = GET)
-  public Iterable<Quote> getQuotes(@RequestParam(value = "author", required = false) String author) {
+  public Iterable<Quote> getQuotes(
+      @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+      @RequestParam(value = "size", required = false, defaultValue = "20") int size,
+      @RequestParam(value = "author", required = false) String author) {
+    PageRequest pageRequest = new PageRequest(page, size);
     if (author != null) {
-      return repo.findByAuthor(author);
+      return repo.findByAuthor(pageRequest, author).getContent();
     }
     else {
-      return repo.findAll();
+      return repo.findAll(pageRequest).getContent();
     }
   }
 

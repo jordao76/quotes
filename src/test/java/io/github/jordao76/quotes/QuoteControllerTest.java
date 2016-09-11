@@ -49,6 +49,26 @@ public class QuoteControllerTest {
   }
 
   @Test
+  public void getQuotes_pagingSize() throws Exception {
+    client
+      .perform(get("/quotes?size=7")) // first page is page=0
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(jsonPath("$", hasSize(7)))
+      .andExpect(contentAsQuotes(not(hasQuote(withAuthor("Erich Gamma"))))); // on second page
+  }
+
+  @Test
+  public void getQuotes_paging() throws Exception {
+    client
+      .perform(get("/quotes?size=7&page=1")) // pages are 0-based
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(jsonPath("$", hasSize(7)))
+      .andExpect(contentAsQuotes(hasQuote(withAuthor("Erich Gamma"))));
+  }
+
+  @Test
   public void getQuotes_byAuthor() throws Exception {
     client
       .perform(get("/quotes?author=Martin Fowler"))
