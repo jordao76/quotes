@@ -34,7 +34,11 @@ $ curl -s localhost:8080/quotes/any | jq .
 }
 ```
 
-`/quotes` will return all quotes and `/quotes/{id}` will return the quote with ID `{id}`.
+`/quotes` returns all quotes (paged) and `/quotes/{id}` returns the quote with ID `{id}`.
+
+`/quotes?author={author}` returns all quotes (paged) by author `{author}`, e.g. `/quotes?author=Martin+Fowler`.
+
+Paging is done with parameters `page` (zero-based, default `0`) for the page of results and `size` (default `20`) for the number of quotes per page, e.g. `/quotes?page=3&size=10`.
 
 To create and delete quotes, HTTP basic authentication is required, with a user with the role `MAINTAINER` (the default user `admin:password` has all the relevant roles).
 
