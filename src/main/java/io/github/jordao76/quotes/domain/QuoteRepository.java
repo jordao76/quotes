@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuoteRepository extends PagingAndSortingRepository<Quote, Long> {
+  Iterable<Quote> findByAuthor(String author);
 }

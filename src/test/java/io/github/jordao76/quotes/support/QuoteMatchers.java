@@ -11,7 +11,9 @@ import com.fasterxml.jackson.databind.*;
 
 import io.github.jordao76.quotes.domain.*;
 
-public class QuoteMatchers {
+public final class QuoteMatchers {
+
+  private QuoteMatchers() {}
 
   public static ResultMatcher contentAsQuote(Matcher<? super Quote> matcher) {
     return contentAs(Quote.class, matcher);
@@ -37,6 +39,21 @@ public class QuoteMatchers {
     };
   }
 
+  public static Matcher<Quote> hasAuthor(String author) {
+    return new TypeSafeMatcher<Quote>() {
+      @Override
+      public void describeTo(Description description) {
+        description.appendText(
+          String.format("author=[%s]", author));
+      }
+      @Override
+      protected boolean matchesSafely(Quote quote) {
+        return
+          quote != null && author.equals(quote.getAuthor());
+      }
+    };
+  }
+
   public static Matcher<Quote[]> hasQuote(Matcher<Quote> matcher) {
     return new TypeSafeMatcher<Quote[]>() {
       @Override
@@ -47,6 +64,20 @@ public class QuoteMatchers {
       @Override
       protected boolean matchesSafely(Quote[] quotes) {
         return Stream.of(quotes).anyMatch(quote -> matcher.matches(quote));
+      }
+    };
+  }
+
+  public static Matcher<Quote[]> everyQuote(Matcher<Quote> matcher) {
+    return new TypeSafeMatcher<Quote[]>() {
+      @Override
+      public void describeTo(Description description) {
+        description.appendText("every quote has ");
+        description.appendDescriptionOf(matcher);
+      }
+      @Override
+      protected boolean matchesSafely(Quote[] quotes) {
+        return Stream.of(quotes).allMatch(quote -> matcher.matches(quote));
       }
     };
   }

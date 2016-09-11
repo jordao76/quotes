@@ -28,8 +28,13 @@ public class QuoteController {
   }
 
   @RequestMapping(method = GET)
-  public Iterable<Quote> getQuotes() {
-    return repo.findAll();
+  public Iterable<Quote> getQuotes(@RequestParam(value = "author", required = false) String author) {
+    if (author != null) {
+      return repo.findByAuthor(author);
+    }
+    else {
+      return repo.findAll();
+    }
   }
 
   @RequestMapping(value = "/any", method = GET)

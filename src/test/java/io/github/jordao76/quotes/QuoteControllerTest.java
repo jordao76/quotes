@@ -49,6 +49,15 @@ public class QuoteControllerTest {
   }
 
   @Test
+  public void getQuotes_byAuthor() throws Exception {
+    client
+      .perform(get("/quotes?author=Martin Fowler"))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+      .andExpect(contentAsQuotes(everyQuote(hasAuthor("Martin Fowler"))));
+  }
+
+  @Test
   public void getFirstQuote() throws Exception {
     client
       .perform(get("/quotes/1"))
