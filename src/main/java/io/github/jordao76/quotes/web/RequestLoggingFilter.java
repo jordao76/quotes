@@ -26,7 +26,7 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
     if (logger.isDebugEnabled()) {
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       String username = "[anonymous]";
-      if (auth.getPrincipal() instanceof User) {
+      if (auth != null && auth.getPrincipal() != null && auth.getPrincipal() instanceof User) {
         username = ((User)auth.getPrincipal()).getUsername();
       }
       logger.debug("HTTP {} for {} {}; user: {}",

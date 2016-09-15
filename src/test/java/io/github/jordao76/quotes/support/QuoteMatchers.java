@@ -1,14 +1,17 @@
 package io.github.jordao76.quotes.support;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
 
 import java.util.stream.*;
 
 import org.hamcrest.*;
+import org.mockito.*;
 import org.springframework.test.web.servlet.*;
 
 import com.fasterxml.jackson.databind.*;
 
+import ch.qos.logback.classic.spi.*;
 import io.github.jordao76.quotes.domain.*;
 
 public final class QuoteMatchers {
@@ -84,6 +87,15 @@ public final class QuoteMatchers {
         return Stream.of(quotes).allMatch(quote -> matcher.matches(quote));
       }
     };
+  }
+
+  public static LoggingEvent logged(String message) {
+    return argThat(new ArgumentMatcher<LoggingEvent>() {
+      @Override
+      public boolean matches(Object argument) {
+        return ((LoggingEvent) argument).getFormattedMessage().contains(message);
+      }
+    });
   }
 
   public static <T> ResultMatcher contentAs(Class<T> type, Matcher<? super T> matcher) {
