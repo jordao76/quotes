@@ -9,13 +9,13 @@ Simple spring-boot service for citations.
 
 Run with maven:
 
-```
+```sh
 $ mvn spring-boot:run
 ```
 
 Or package and run (change version as appropriate):
 
-```
+```sh
 $ mvn package
 ...
 $ java -jar target/quotes-0.0.1-SNAPSHOT.jar
@@ -45,8 +45,7 @@ To create and delete quotes, HTTP basic authentication is required, with a user 
 To create a quote issue a POST request to `/quotes`:
 
 ```sh
-$ curl -i -H "Authorization: Basic $(echo -n admin:password | base64)" \
-  -H "Content-Type: application/json" \
+$ curl -i -u admin:password -H "Content-Type: application/json" \
   -d '{"text":"Quick decisions are unsafe decisions","author":"Sophocles"}' \
   -X POST localhost:8080/quotes
 ```
@@ -54,8 +53,7 @@ $ curl -i -H "Authorization: Basic $(echo -n admin:password | base64)" \
 To delete quote with ID `{id}` issue a DELETE request to `/quotes/{id}`:
 
 ```sh
-$ curl -i -H "Authorization: Basic $(echo -n admin:password | base64)" \
-  -X DELETE localhost:8080/quotes/23
+$ curl -i -u admin:password -X DELETE localhost:8080/quotes/23
 ```
 
 The [actuator](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready) endpoints are exposed through `/manage`, and also require authentication, with a user with the role `ADMIN`.
