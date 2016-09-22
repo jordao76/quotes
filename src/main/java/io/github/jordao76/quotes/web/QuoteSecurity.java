@@ -15,14 +15,14 @@ public class QuoteSecurity extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
       .csrf().disable()
-      .authorizeRequests()
+      .headers().frameOptions().disable()
+      .and().httpBasic()
+      .and().authorizeRequests()
         .antMatchers(GET, "/quotes/**").permitAll()
         .antMatchers(DELETE, "/quotes/**").hasRole("MAINTAINER")
         .antMatchers(POST, "/quotes").hasRole("MAINTAINER")
-        .antMatchers("/manage/**").hasRole("ADMIN")
-        .antMatchers("/**").denyAll()
-      .and()
-        .httpBasic();
+        .antMatchers("/manage/**", "/h2-console/**").hasRole("ADMIN")
+        .antMatchers("/**").denyAll();
   }
 
   @Override
