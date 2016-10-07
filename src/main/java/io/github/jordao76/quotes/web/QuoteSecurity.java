@@ -22,7 +22,7 @@ public class QuoteSecurity extends WebSecurityConfigurerAdapter {
         .antMatchers(DELETE, "/quotes/**").hasRole("MAINTAINER")
         .antMatchers(POST, "/quotes").hasRole("MAINTAINER")
         .antMatchers("/manage/**", "/h2-console/**").hasRole("ADMIN")
-        .antMatchers("/**").denyAll();
+        .antMatchers("/**").permitAll();
   }
 
   @Override
