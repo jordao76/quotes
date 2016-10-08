@@ -236,7 +236,7 @@
     developments easier to understand and maintain, is to follow what we call
     the DRY principle: Every piece of knowledge must have a single, unambiguous,
     authoritative representation within a system. Why do we call it DRY?
-    DRY - Don''t Repeat Yourself. The alternative is to have the same thing
+    DRY - Don't Repeat Yourself. The alternative is to have the same thing
     expressed in two or more places. If you change one, you have to remember to
     change the others... It isn't a question of whether you'll remember:
     it's a question of when you will forget.
