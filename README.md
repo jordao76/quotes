@@ -64,7 +64,7 @@ The [actuator](http://docs.spring.io/spring-boot/docs/current/reference/htmlsing
 
 ## UI
 
-A simple UI to get random quotes is available through the submodule [quotes-ui](https://github.com/jordao76/quotes-ui) (don't forget to also [clone submodules](http://stackoverflow.com/questions/3796927/how-to-git-clone-including-submodules)). `quotes-ui` is a `node.js` sub-project using the [frontend-maven-plugin](https://github.com/eirslett/frontend-maven-plugin). The UI can be built by activating the maven profile `ui`, e.g.:
+A simple UI to get random quotes is available through the submodule [quotes-ui](https://github.com/jordao76/quotes-ui) (don't forget to also [clone submodules](http://stackoverflow.com/questions/3796927/how-to-git-clone-including-submodules)). `quotes-ui` is a `node.js` sub-project built with the [frontend-maven-plugin](https://github.com/eirslett/frontend-maven-plugin). The UI can be built by activating the maven profile `ui`, e.g.:
 
 ```sh
 $ mvn spring-boot:run -Pui
