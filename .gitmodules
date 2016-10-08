@@ -1,0 +1,3 @@
+[submodule "quotes-ui"]
+	path = quotes-ui
+	url = https://github.com/jordao76/quotes-ui
