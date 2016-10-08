@@ -71,3 +71,5 @@ $ mvn spring-boot:run -Pui
 ```
 
 Then go to `http://localhost:8080` to get random quotes.
+
+A sample with hard-coded quotes can be found [here](https://jordao76.github.io/quotes-ui/).
