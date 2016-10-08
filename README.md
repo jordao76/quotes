@@ -21,9 +21,9 @@ $ mvn package
 $ java -jar target/quotes-0.0.1-SNAPSHOT.jar
 ```
 
-Then go to `http://localhost:8080` to get random quotes.
-
 ## REST API
+
+Using `http://localhost:8080` as the base URL:
 
 `/quotes/any` returns a random quote in JSON (using [jq](https://stedolan.github.io/jq/)):
 
@@ -61,3 +61,13 @@ $ curl -i -u admin:password -X DELETE localhost:8080/quotes/23
 ```
 
 The [actuator](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready) endpoints are exposed through `/manage`, and also require authentication, with a user with the role `ADMIN`.
+
+## UI
+
+A simple UI to get random quotes is available through the submodule [quotes-ui](https://github.com/jordao76/quotes-ui) (don't forget to also [clone submodules](http://stackoverflow.com/questions/3796927/how-to-git-clone-including-submodules)). `quotes-ui` is a `node.js` sub-project using the [frontend-maven-plugin](https://github.com/eirslett/frontend-maven-plugin). The UI can be built by activating the maven profile `ui`, e.g.:
+
+```sh
+$ mvn spring-boot:run -Pui
+```
+
+Then go to `http://localhost:8080` to get random quotes.

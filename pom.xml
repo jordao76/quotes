@@ -107,4 +107,69 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>ui</id>
+
+      <build>
+
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+          </resource>
+          <resource>
+            <directory>quotes-ui/dist</directory>
+          </resource>
+        </resources>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>1.0</version>
+            <configuration>
+              <workingDirectory>quotes-ui</workingDirectory>
+            </configuration>
+            <executions>
+              <execution>
+                <id>install node and npm</id>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>v6.5.0</nodeVersion>
+                  <npmVersion>3.10.3</npmVersion>
+                </configuration>
+              </execution>
+              <execution>
+                <id>npm install</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>bower install</id>
+                <goals>
+                  <goal>bower</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>gulp build</id>
+                <goals>
+                  <goal>gulp</goal>
+                </goals>
+                <configuration>
+                  <arguments>cdnize</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+
+    </profile>
+  </profiles>
+
 </project>
