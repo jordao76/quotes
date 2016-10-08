@@ -2,6 +2,7 @@ package io.github.jordao76.quotes.web;
 
 import static org.springframework.http.HttpMethod.*;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.builders.*;
@@ -25,12 +26,17 @@ public class QuoteSecurity extends WebSecurityConfigurerAdapter {
         .antMatchers("/**").permitAll();
   }
 
+  @Value("${quotes.admin.name:admin}")
+  private String adminName;
+  @Value("${quotes.admin.password:password}")
+  private String adminPassword;
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth
       .inMemoryAuthentication()
-      .withUser("admin")
-      .password("password")
+      .withUser(adminName)
+      .password(adminPassword)
       .roles("MAINTAINER", "ADMIN");
   }
 
