@@ -14,6 +14,3 @@
 # Maven
 log/
 target/
-
-# quotes-ui output
-src/main/resources/public
