@@ -8,3 +8,8 @@ applications:
     # Use the non-blocking /dev/urandom instead of the default to generate random numbers.
     # This may help with slow startup times, especially when using Spring Boot.
     JAVA_OPTS: -Djava.security.egd=file:///dev/./urandom
+    # turn on the "cloud" profile
+    SPRING_PROFILES_ACTIVE: cloud
+  services:
+    # bind this application to a DB service named "quotes-db"
+    - quotes-db
